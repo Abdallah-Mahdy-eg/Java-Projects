@@ -1,0 +1,31 @@
+package employee.s;
+
+public class EmployeeDaily extends Employee {
+
+    private double DailySalary;
+
+    public EmployeeDaily(String name, int ssn, double DailySalary) {
+        super(name, ssn);
+        this.DailySalary = DailySalary;
+    }
+
+    public void SetDailySalary(double DailySalary) {
+        this.DailySalary = DailySalary;
+    }
+
+    public double getDailySalary() {
+        return DailySalary;
+    }
+
+    @Override
+    double yearlySalary(double Salary) {
+        return Salary * 30 * 12;
+    }
+
+    @Override
+    double Raise(double Salary) {
+        double yearlySala = Salary * 30 * 12;
+        double raise = yearlySala * 5 / 100;
+        return yearlySala + raise;
+    }
+}
