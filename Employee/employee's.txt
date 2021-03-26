@@ -1,0 +1,102 @@
+package employee.s;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class EmployeeS {
+
+    public static void main(String[] args) {
+        ArrayList<EmployeeMonthly> ListEmployeeMonthly = new ArrayList();
+        ArrayList<EmployeeDaily> ListEmployeeDaily = new ArrayList();
+        Scanner input = new Scanner(System.in);
+        int Operations1, Operations2, IdEmploye = -1;
+        boolean quit = false, find = false;
+        do {
+            System.out.println("To part of Employee Monthly press 1 ");
+            System.out.println("To part Employee Daily press 2 ");
+            System.out.println("To Exit press 0 ");
+            Operations1 = input.nextInt();
+            if (Operations1 == 1 || Operations1 == 2) {
+                System.out.println("To insert Employee press 1 ");
+                System.out.println("To delete Employee press 2 ");
+                System.out.println("To display List of Employee press 3 ");
+                Operations2 = input.nextInt();
+                if (Operations1 == 1) {
+                    if (Operations2 == 1) {
+                        System.out.println("Ente name of employee : ");
+                        String name = input.next();
+                        System.out.println("Ente id of employee : ");
+                        int id = input.nextInt();
+                        System.out.println("Ente MonthlySalary of employee : ");
+                        double MonthlySalary = input.nextDouble();
+                        EmployeeMonthly e1 = new EmployeeMonthly(name, id, MonthlySalary);
+                        ListEmployeeMonthly.add(e1);
+                    } else if (Operations2 == 2) {
+                        System.out.println("Enter id of employee : ");
+                        int id = input.nextInt();
+                        for (int i = 0; i < ListEmployeeMonthly.size(); i++) {
+                            if (ListEmployeeMonthly.get(i).getSsn() == id) {
+                                find = true;
+                                IdEmploye = i;
+                            }
+                        }
+                        if (find) {
+                            ListEmployeeMonthly.remove(IdEmploye);
+                        }
+                        IdEmploye = -1;
+                    } else if (Operations2 == 3) {
+                        for (int i = 0; i < ListEmployeeMonthly.size(); i++) {
+                            double salary = ListEmployeeMonthly.get(i).getMonthlySalary();
+                            System.out.println("| Name : " + ListEmployeeMonthly.get(i).getName()
+                                    + " | Id : " + ListEmployeeMonthly.get(i).getSsn()
+                                    + " | MonthlySalary : " + ListEmployeeMonthly.get(i).getMonthlySalary()
+                                    + " | yearlySalary : " + ListEmployeeMonthly.get(i).yearlySalary(salary)
+                                    + " | Total Salary : " + ListEmployeeMonthly.get(i).Raise(salary) + " |");
+                        }
+                        System.out.println();
+                    }
+                } else {
+                    if (Operations2 == 1) {
+                        System.out.println("Ente name of employee : ");
+                        String name = input.next();
+                        System.out.println("Ente id of employee : ");
+                        int id = input.nextInt();
+                        System.out.println("Ente MonthlySalary of employee : ");
+                        double DailySalary = input.nextDouble();
+                        EmployeeDaily e1 = new EmployeeDaily(name, id, DailySalary);
+                        ListEmployeeDaily.add(e1);
+                    } else if (Operations2 == 2) {
+                        System.out.println("Enter id of employee : ");
+                        int id = input.nextInt();
+                        for (int i = 0; i < ListEmployeeDaily.size(); i++) {
+                            if (ListEmployeeDaily.get(i).getSsn() == id) {
+                                find = true;
+                                IdEmploye = i;
+                            }
+                        }
+                        if (find) {
+                            ListEmployeeDaily.remove(IdEmploye);
+                        }
+                        IdEmploye = -1;
+                    } else if (Operations2 == 3) {
+                        for (int i = 0; i < ListEmployeeDaily.size(); i++) {
+                            double salary = ListEmployeeDaily.get(i).getDailySalary();
+                            System.out.println("| Name : " + ListEmployeeDaily.get(i).getName()
+                                    + " | Id : " + ListEmployeeDaily.get(i).getSsn()
+                                    + " | DailySalary : " + ListEmployeeDaily.get(i).getDailySalary()
+                                    + " | yearlySalary : " + ListEmployeeDaily.get(i).yearlySalary(salary)
+                                    + " | Total Salary : " + ListEmployeeDaily.get(i).Raise(salary) + " |");
+                        }
+                        System.out.println();
+                    }
+                }
+            } else if (Operations1 == 0) {
+                quit = true;
+            } else {
+                System.out.println("Sorry, try agan!");
+            }
+        } while (!quit);
+        System.out.println("Thanks !");
+    }
+
+}
