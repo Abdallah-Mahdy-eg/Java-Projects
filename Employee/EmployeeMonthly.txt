@@ -1,0 +1,32 @@
+package employee.s;
+
+public class EmployeeMonthly extends Employee {
+
+    private double MonthlySalary;
+
+    public EmployeeMonthly(String name, int ssn, double MonthlySalary) {
+        super(name, ssn);
+        this.MonthlySalary = MonthlySalary;
+    }
+
+    public void SetMonthlySalary(double MonthlySalary) {
+        this.MonthlySalary = MonthlySalary;
+    }
+
+    public double getMonthlySalary() {
+        return MonthlySalary;
+    }
+
+    @Override
+    double yearlySalary(double MonthlySalary) {
+        return MonthlySalary * 12;
+    }
+
+    @Override
+    double Raise(double MonthlySalary) {
+        double yearlySala = MonthlySalary * 12;
+        double raise = yearlySala * 10 / 100;
+        return yearlySala + raise;
+    }
+
+}
