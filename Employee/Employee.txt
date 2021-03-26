@@ -1,0 +1,37 @@
+package employee.s;
+
+public abstract class Employee {
+
+    private String name;
+    private int ssn;
+
+    public Employee(String name, int ssn) {
+        this.name = name;
+        this.ssn = ssn;
+    }
+
+    public void SetName(String name) {
+        this.name = name;
+    }
+
+    public void setSsn(int ssn) {
+        this.ssn = ssn;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getSsn() {
+        return ssn;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" + "name=" + name + ", addres=" + ssn + '}';
+    }
+
+    abstract double yearlySalary(double MonthlySalary);
+
+    abstract double Raise(double MonthlySalary);
+}
